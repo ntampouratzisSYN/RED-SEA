@@ -1,3 +1,5 @@
+#Setup on Ubuntu 18.04
+
 #gem5 prerequisites
 sudo apt install build-essential git m4 scons zlib1g zlib1g-dev libprotobuf-dev protobuf-compiler libprotoc-dev libgoogle-perftools-dev python3-dev python3-six python libboost-all-dev pkg-config
 
