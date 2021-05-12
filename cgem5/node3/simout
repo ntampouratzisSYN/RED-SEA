@@ -1,0 +1,140 @@
+Global frequency set at 1000000000000 ticks per second
+
+1. COSSIM_PROC_NET_NODE3
+HLA_GEM5 Note : FederationExecutionAlreadyExists Reason is : COSSIM_PROC_NET_NODE3. OK I can join it
+announceSynchronizationPoint
+
+2. GEM5_NODE3
+HLA_GEM5 Note : FederationExecutionAlreadyExists Reason is : GLOBAL_SYNCHRONIZATION. OK I can join it
+announceSynchronizationPoint
+warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (512 Mbytes)
+info: kernel located at: /home/red-sea/COSSIM/kernels/binaries/vmlinux.arm64
+testsys.vncserver: Listening for connections on port 5902
+testsys.terminal: Listening for connections on port 3003
+testsys.realview.uart1.device: Listening for connections on port 3462
+testsys.realview.uart2.device: Listening for connections on port 3463
+testsys.realview.uart3.device: Listening for connections on port 3464
+0: testsys.remote_gdb: listening for remote gdb on port 7002
+info: Using bootloader at address 0x10
+info: Using kernel entry physical address at 0x80080000
+info: Loading DTB file: /home/red-sea/COSSIM/cgem5/node3/testsys.dtb at address 0x88000000
+warn: Existing EnergyCtrl, but no enabled DVFSHandler found.
+Redirecting stdout and stderr to /home/red-sea/COSSIM/cgem5/node3/simout
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 21.0.0.0
+gem5 compiled May 10 2021 21:36:14
+gem5 started May 12 2021 00:09:44
+gem5 executing on redsea-virtual-machine, pid 3885
+command line: /home/red-sea/COSSIM/cgem5/build/ARM/gem5.opt --listener-mode=on -r -d /home/red-sea/COSSIM/cgem5/node3 /home/red-sea/COSSIM/cgem5/configs/example/fs.py --kernel=vmlinux.arm64 --disk-image=ubuntu-18.04-arm64-docker.img --machine-type=VExpress_GEM5_V1 --SynchTime=10ms --RxPacketTime=10ms --TotalNodes=4 --nodeNum=3 --script=/home/red-sea/COSSIM/cgem5/configs/boot/COSSIM/script3.rcS --cossim
+
+**** REAL SIMULATION ****
+warn: iobus.slave is deprecated. `slave` is now called `cpu_side_ports`
+warn: bridge.master is deprecated. `master` is now called `mem_side_port`
+warn: membus.master is deprecated. `master` is now called `mem_side_ports`
+warn: bridge.slave is deprecated. `slave` is now called `cpu_side_port`
+warn: membus.slave is deprecated. `slave` is now called `cpu_side_ports`
+warn: iobus.master is deprecated. `master` is now called `mem_side_ports`
+warn: iobridge.slave is deprecated. `slave` is now called `cpu_side_port`
+warn: membus.slave is deprecated. `slave` is now called `cpu_side_ports`
+warn: iobridge.master is deprecated. `master` is now called `mem_side_port`
+warn: membus.slave is deprecated. `slave` is now called `cpu_side_ports`
+warn: membus.slave is deprecated. `slave` is now called `cpu_side_ports`
+warn: membus.slave is deprecated. `slave` is now called `cpu_side_ports`
+warn: membus.slave is deprecated. `slave` is now called `cpu_side_ports`
+warn: No dot file generated. Please install pydot to generate the dot file and pdf.
+info: Entering event queue @ 0.  Starting simulation...
+warn: SCReg: Access to unknown device dcc0:site0:pos0:fn7:dev0
+4786001500: testsys.terminal: attach terminal 0
+warn: 	instruction 'csdb' unimplemented
+warn: GIC APRn write ignored because not implemented: 0xd0
+warn: GIC APRn write ignored because not implemented: 0xd4
+warn: GIC APRn write ignored because not implemented: 0xd8
+warn: GIC APRn write ignored because not implemented: 0xdc
+warn: Tried to read RealView I/O at offset 0x60 that doesn't exist
+warn: Tried to read RealView I/O at offset 0x48 that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to read RealView I/O at offset 0x8 that doesn't exist
+warn: Tried to read RealView I/O at offset 0x48 that doesn't exist
+warn: EnergyCtrl: Disabled handler, ignoring read from reg 0
+Exiting @ tick 4025419130500 because m5_exit instruction encountered
+RTIA:: RTIA has thrown NetworkError exception.
+RTIA:: Reason: Connection closed by client.
+
+RTIA: Statistics (processed messages)
+List of federate initiated services 
+--------------------------------------------------
+       1 Message::OPEN_CONNEXION (MSG#1)
+       1 Message::RESIGN_FEDERATION_EXECUTION (MSG#6)
+       1 Message::SYNCHRONIZATION_POINT_ACHIEVED (MSG#11)
+       1 Message::PUBLISH_INTERACTION_CLASS (MSG#31)
+       1 Message::SUBSCRIBE_INTERACTION_CLASS (MSG#35)
+       1 Message::ENABLE_TIME_REGULATION (MSG#81)
+       1 Message::DISABLE_TIME_REGULATION (MSG#82)
+       1 Message::ENABLE_TIME_CONSTRAINED (MSG#83)
+       1 Message::DISABLE_TIME_CONSTRAINED (MSG#84)
+     403 Message::QUERY_FEDERATE_TIME (MSG#86)
+     402 Message::TIME_ADVANCE_REQUEST (MSG#92)
+       2 Message::GET_INTERACTION_CLASS_HANDLE (MSG#117)
+       4 Message::GET_PARAMETER_HANDLE (MSG#119)
+     411 Message::TICK_REQUEST (MSG#142)
+     406 Message::TICK_REQUEST_NEXT (MSG#143)
+       1 Message::JOIN_FEDERATION_EXECUTION_V4 (MSG#149)
+
+List of RTI initiated services 
+--------------------------------------------------
+    1612 NetworkMessage::Type::MESSAGE_NULL (MSG#2)
+       2 NetworkMessage::Type::SET_TIME_REGULATING (MSG#8)
+       1 NetworkMessage::Type::TIME_REGULATION_ENABLED (MSG#10)
+       1 NetworkMessage::Type::TIME_CONSTRAINED_ENABLED (MSG#11)
+       1 NetworkMessage::Type::ANNOUNCE_SYNCHRONIZATION_POINT (MSG#14)
+       1 NetworkMessage::Type::FEDERATION_SYNCHRONIZED (MSG#16)
+
+ Number of Federate messages : 1638
+ Number of RTIG messages : 1618
+ TCP Socket  3 : total =     13292 Bytes sent 
+ TCP Socket  3 : total =     52581 Bytes received
+ UDP Socket  4 : total =         0 Bytes sent 
+ UDP Socket  4 : total =         0 Bytes received
+RTIA:: RTIA has thrown NetworkError exception.
+RTIA:: Reason: Connection closed by client.
+
+RTIA: Statistics (processed messages)
+List of federate initiated services 
+--------------------------------------------------
+       1 Message::OPEN_CONNEXION (MSG#1)
+       1 Message::RESIGN_FEDERATION_EXECUTION (MSG#6)
+       1 Message::SYNCHRONIZATION_POINT_ACHIEVED (MSG#11)
+       1 Message::PUBLISH_INTERACTION_CLASS (MSG#31)
+       1 Message::SUBSCRIBE_INTERACTION_CLASS (MSG#35)
+       1 Message::SEND_INTERACTION (MSG#45)
+     403 Message::QUERY_FEDERATE_TIME (MSG#86)
+     403 Message::TIME_ADVANCE_REQUEST (MSG#92)
+       2 Message::GET_INTERACTION_CLASS_HANDLE (MSG#117)
+       4 Message::GET_PARAMETER_HANDLE (MSG#119)
+     411 Message::TICK_REQUEST (MSG#142)
+     406 Message::TICK_REQUEST_NEXT (MSG#143)
+       1 Message::JOIN_FEDERATION_EXECUTION_V4 (MSG#149)
+
+List of RTI initiated services 
+--------------------------------------------------
+       1 NetworkMessage::Type::ANNOUNCE_SYNCHRONIZATION_POINT (MSG#14)
+       1 NetworkMessage::Type::FEDERATION_SYNCHRONIZED (MSG#16)
+       1 NetworkMessage::Type::RECEIVE_INTERACTION (MSG#48)
+
+ Number of Federate messages : 1636
+ Number of RTIG messages : 3
+ TCP Socket  3 : total =       365 Bytes sent 
+ TCP Socket  3 : total =       928 Bytes received
+ UDP Socket  4 : total =         0 Bytes sent 
+ UDP Socket  4 : total =         0 Bytes received
