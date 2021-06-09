@@ -1192,7 +1192,7 @@ Interrupts:
             self.clock24MHz,
             self.vio[0],
             self.vio[1],
-            self.ethernet,
+#            self.ethernet,
         ] + self.uart
 
     def _off_chip_memory(self):

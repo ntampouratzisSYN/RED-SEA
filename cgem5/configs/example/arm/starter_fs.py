@@ -99,6 +99,8 @@ def create(args):
     system = devices.simpleSystem(ArmSystem,
                                   want_caches,
                                   args.mem_size,
+                                  cossim_enabled=args.cossim,
+                                  nodeNum=args.nodeNum,
                                   mem_mode=mem_mode,
                                   workload=ArmFsLinux(
                                       object_file=
@@ -193,6 +195,20 @@ def run(args):
     sys.exit(event.getCode())
 
 
+def addEthernet(system, options):
+    # create NIC
+    dev = IGbE_e1000()
+    system.attach_pci(dev)
+    system.ethernet = dev
+    
+    system.etherlink = COSSIMEtherLink(nodeNum=options.nodeNum, TotalNodes=options.TotalNodes, sys_clk=options.sys_clock,SynchTime=options.SynchTime, RxPacketTime=options.RxPacketTime) #system_clock is used for synchronization
+    
+    system.etherlink.interface = Parent.system.ethernet.interface
+    if options.etherdump:
+        system.etherdump = EtherDump(file=options.etherdump)
+        system.etherlink.dump = system.etherdump
+
+    
 def main():
     parser = argparse.ArgumentParser(epilog=__doc__)
 
@@ -227,12 +243,43 @@ def main():
                         help="Specify the physical memory size")
     parser.add_argument("--checkpoint", action="store_true")
     parser.add_argument("--restore", type=str, default=None)
+    
+    #COSSIM Options
+    parser.add_argument("--cossim", action="store_true",
+                      help="COSSIM distributed gem5 simulation.")
+    
+    parser.add_argument("--nodeNum", action="store", type=int, dest="nodeNum", default=0,
+                      help="Specify the number of node")
+    
+    parser.add_argument("--SynchTime", action="store", type=str, dest="SynchTime",
+                      help="Specify the Synchronization Time. For example: --SynchTime=1ms")
+    
+    parser.add_argument("--RxPacketTime", action="store", type=str, dest="RxPacketTime",
+                      help="Specify the minimum time in which the node can accept packet from the OMNET++. For example: --SynchTime=1ms")
+    
+    parser.add_argument("--TotalNodes", action="store", type=str, dest="TotalNodes", default=1,
+                      help="Specify the total number of nodes")
+    
+    parser.add_argument("--sys-clock", action="store", type=str, dest="sys_clock", 
+                      default="1GHz",
+                      help = """Top-level clock for blocks running at system
+                      speed""")
+    
+    parser.add_argument("--etherdump", action="store", type=str, default="",
+                        help="Specify the filename to dump a pcap capture of"\
+                        " the ethernet traffic")
+    
+    parser.add_argument("--mcpat-xml", action="store", type=str, default="empty", dest="McPATXml",
+                      help="Specify the McPAT xml ProcessorDescriptionFile")
 
 
     args = parser.parse_args()
-
+    
     root = Root(full_system=True)
     root.system = create(args)
+    
+    if args.cossim:
+        addEthernet(root.system, args)
 
     if args.restore is not None:
         m5.instantiate(args.restore)

@@ -277,7 +277,7 @@ class FastmodelCluster(SubSystem):
     def connectMemSide(self, bus):
         pass
 
-def simpleSystem(BaseSystem, caches, mem_size, platform=None, **kwargs):
+def simpleSystem(BaseSystem, caches, mem_size, cossim_enabled=False, nodeNum=0, platform=None, **kwargs):
     """
     Create a simple system example.  The base class in configurable so
     that it is possible (e.g) to link the platform (hardware configuration)
@@ -286,7 +286,7 @@ def simpleSystem(BaseSystem, caches, mem_size, platform=None, **kwargs):
     class SimpleSystem(BaseSystem):
         cache_line_size = 64
 
-        def __init__(self, caches, mem_size, platform=None, **kwargs):
+        def __init__(self, caches, mem_size, cossim_enabled, nodeNum, platform=None, **kwargs):
             super(SimpleSystem, self).__init__(**kwargs)
 
             self.voltage_domain = VoltageDomain(voltage="1.0V")
@@ -305,7 +305,10 @@ def simpleSystem(BaseSystem, caches, mem_size, platform=None, **kwargs):
             self.membus = MemBus()
 
             self.intrctrl = IntrControl()
-            self.terminal = Terminal()
+            if cossim_enabled:
+                self.terminal = Terminal(port=(3000+nodeNum))
+            else:
+                self.terminal = Terminal()
             self.vncserver = VncServer()
 
             self.iobus = IOXBar()
@@ -386,4 +389,4 @@ def simpleSystem(BaseSystem, caches, mem_size, platform=None, **kwargs):
             for cluster in self._clusters:
                 cluster.connectMemSide(cluster_mem_bus)
 
-    return SimpleSystem(caches, mem_size, platform, **kwargs)
+    return SimpleSystem(caches, mem_size, cossim_enabled, nodeNum, platform, **kwargs)
