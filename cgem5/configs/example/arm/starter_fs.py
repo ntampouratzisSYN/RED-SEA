@@ -99,8 +99,8 @@ def create(args):
     system = devices.simpleSystem(ArmSystem,
                                   want_caches,
                                   args.mem_size,
-                                  cossim_enabled=args.cossim,
-                                  nodeNum=args.nodeNum,
+                                  cossim_enabled=args.cossim, #COSSIM
+                                  nodeNum=args.nodeNum,       #COSSIM
                                   mem_mode=mem_mode,
                                   workload=ArmFsLinux(
                                       object_file=
@@ -195,7 +195,7 @@ def run(args):
     sys.exit(event.getCode())
 
 
-def addEthernet(system, options):
+def addEthernet(system, options): #COSSIM
     # create NIC
     dev = IGbE_e1000()
     system.attach_pci(dev)
@@ -278,8 +278,8 @@ def main():
     root = Root(full_system=True)
     root.system = create(args)
     
-    if args.cossim:
-        addEthernet(root.system, args)
+    if args.cossim:                    #COSSIM
+        addEthernet(root.system, args) #COSSIM
 
     if args.restore is not None:
         m5.instantiate(args.restore)

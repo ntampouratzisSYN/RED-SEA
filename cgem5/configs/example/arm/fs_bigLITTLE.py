@@ -55,7 +55,7 @@ import devices
 from devices import AtomicCluster, KvmCluster, FastmodelCluster
 
 
-default_disk = 'aarch64-ubuntu-trusty-headless.img'
+default_disk = 'linaro-minimal-aarch64.img'
 
 default_mem_size= "2GB"
 
@@ -108,13 +108,15 @@ class Ex5LittleCluster(devices.CpuCluster):
         super(Ex5LittleCluster, self).__init__(system, num_cpus, cpu_clock,
                                          cpu_voltage, *cpu_config)
 
-def createSystem(caches, kernel, bootscript, machine_type="VExpress_GEM5",
+def createSystem(options, caches, kernel, bootscript, machine_type="VExpress_GEM5",
                  disks=[],  mem_size=default_mem_size, bootloader=None):
     platform = ObjectList.platform_list.get(machine_type)
     m5.util.inform("Simulated platform: %s", platform.__name__)
 
     sys = devices.simpleSystem(ArmSystem,
-                               caches, mem_size, platform(),
+                               caches, mem_size, 
+                               options.cossim, options.nodeNum, #COSSIM
+                               platform(),
                                workload=ArmFsLinux(
                                    object_file=SysPaths.binary(kernel)),
                                readfile=bootscript)
@@ -173,7 +175,7 @@ def addOptions(parser):
     parser.add_argument("--bootscript", type=str, default="",
                         help="Linux bootscript")
     parser.add_argument("--cpu-type", type=str, choices=list(cpu_types.keys()),
-                        default="timing",
+                        default="atomic",
                         help="CPU simulation mode. Default: %(default)s")
     parser.add_argument("--kernel-init", type=str, default="/sbin/init",
                         help="Override init")
@@ -210,6 +212,36 @@ def addOptions(parser):
                         help=Options.vio_9p_help)
     parser.add_argument("--dtb-gen", action="store_true",
                         help="Doesn't run simulation, it generates a DTB only")
+    
+    
+    #COSSIM Options
+    parser.add_argument("--cossim", action="store_true",
+                      help="COSSIM distributed gem5 simulation.")
+    
+    parser.add_argument("--nodeNum", action="store", type=int, dest="nodeNum", default=0,
+                      help="Specify the number of node")
+    
+    parser.add_argument("--SynchTime", action="store", type=str, dest="SynchTime",
+                      help="Specify the Synchronization Time. For example: --SynchTime=1ms")
+    
+    parser.add_argument("--RxPacketTime", action="store", type=str, dest="RxPacketTime",
+                      help="Specify the minimum time in which the node can accept packet from the OMNET++. For example: --SynchTime=1ms")
+    
+    parser.add_argument("--TotalNodes", action="store", type=str, dest="TotalNodes", default=1,
+                      help="Specify the total number of nodes")
+    
+    parser.add_argument("--sys-clock", action="store", type=str, dest="sys_clock", 
+                      default="1GHz",
+                      help = """Top-level clock for blocks running at system
+                      speed""")
+    
+    parser.add_argument("--etherdump", action="store", type=str, default="",
+                        help="Specify the filename to dump a pcap capture of"\
+                        " the ethernet traffic")
+    
+    parser.add_argument("--mcpat-xml", action="store", type=str, default="empty", dest="McPATXml",
+                      help="Specify the McPAT xml ProcessorDescriptionFile")
+    
     return parser
 
 def build(options):
@@ -232,7 +264,7 @@ def build(options):
     root = Root(full_system=True)
 
     disks = [default_disk] if len(options.disk) == 0 else options.disk
-    system = createSystem(options.caches,
+    system = createSystem(options, options.caches,
                           options.kernel,
                           options.bootscript,
                           options.machine_type,
@@ -367,6 +399,19 @@ def run(checkpoint_dir=m5.options.outdir):
 def generateDtb(root):
     root.system.generateDtb(os.path.join(m5.options.outdir, "system.dtb"))
 
+def addEthernet(system, options): #COSSIM
+    # create NIC
+    dev = IGbE_e1000()
+    system.attach_pci(dev)
+    system.ethernet = dev
+    
+    system.etherlink = COSSIMEtherLink(nodeNum=options.nodeNum, TotalNodes=options.TotalNodes, sys_clk=options.sys_clock,SynchTime=options.SynchTime, RxPacketTime=options.RxPacketTime) #system_clock is used for synchronization
+    
+    system.etherlink.interface = Parent.system.ethernet.interface
+    if options.etherdump:
+        system.etherdump = EtherDump(file=options.etherdump)
+        system.etherlink.dump = system.etherdump
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -375,6 +420,10 @@ def main():
     options = parser.parse_args()
     root = build(options)
     root.apply_config(options.param)
+    
+    if options.cossim:                    #COSSIM
+        addEthernet(root.system, options) #COSSIM
+        
     instantiate(options)
     if options.dtb_gen:
       generateDtb(root)

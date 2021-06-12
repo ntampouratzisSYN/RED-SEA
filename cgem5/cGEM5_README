@@ -13,6 +13,7 @@ The following changes have been performed in order to integrate GEM5 with the ot
 9. Changing the file /gem5/configs/common/FSConfig.py
 10. Changing the file /gem5/configs/example/arm/devices.py
 11. Changing the file /gem5/configs/example/arm/starter_fs.py
+12. Changing the file /gem5/configs/example/arm/fs_bigLITTLE.py
 
 Until Here
 
