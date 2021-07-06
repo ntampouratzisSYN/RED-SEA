@@ -14,9 +14,9 @@ echo "nameserver 8.8.8.8" > /etc/resolv.conf
 
 
 ## Install the following packets:
-apt update
-apt install build-essential
-apt install net-tools
+apt update \
+apt install build-essential \
+apt install net-tools \
 apt install rsh-server
 apt install rsh-client
 apt install xinetd
