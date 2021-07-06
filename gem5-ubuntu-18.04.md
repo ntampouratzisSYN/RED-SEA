@@ -8,9 +8,9 @@ sudo mount -o loop,offset=65536 $HOME/COSSIM/kernels/disks/ubuntu-18.04-arm64-do
 cd /mnt \
 sudo mount --bind /proc /mnt/proc \
 sudo mount --bind /dev /mnt/dev \
-sudo chroot . \
+sudo chroot .
 
-echo "nameserver 8.8.8.8" > /etc/resolv.conf \
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
 
 
 ## Install the following packets:
@@ -21,7 +21,7 @@ apt install rsh-server \
 apt install rsh-client \
 apt install xinetd \
 apt install vim \
-apt install iputils-ping \
+apt install iputils-ping
 
 
 
@@ -32,4 +32,4 @@ exit \
 cd \
 sudo umount /mnt/proc \
 sudo umount /mnt/dev \
-sudo umount /mnt \
+sudo umount /mnt
