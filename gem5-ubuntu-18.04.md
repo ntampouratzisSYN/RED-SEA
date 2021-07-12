@@ -39,6 +39,12 @@ The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed
 echo "node0 root" >> /root/.rhosts \
 echo "node1 root" >> /root/.rhosts
 
+## Download the openmpi (v2.1.6)
+https://www.open-mpi.org/software/ompi/v2.1/ 
+
+## Install from source the openmpi (v2.1.6)
+https://edu.itp.phys.ethz.ch/hs12/programming_techniques/openmpi.pdf 
+
 ## Create an mpi script file in Ubuntu 18.04 simulated image
 The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed that you must add all simulated nodes (e.g. if you would like to simulate 3 nodes, node2 must be added). \
 
