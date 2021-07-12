@@ -57,7 +57,7 @@ echo "rsh 192.168.0.3 m5 exit &" >> mpi_execution_script \
 chmod +x mpi_execution_script
 
 # VEF traces
-apt install cmake
+apt install cmake \
 Download and install VEF prospector from here: https://gitraap.i3a.info/fandujar/VEF-Prospector
 
 ## Create a VEF mpi script file in Ubuntu 18.04 simulated image (obtain traces)
