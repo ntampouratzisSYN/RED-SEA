@@ -33,6 +33,12 @@ echo "127.0.0.1 localhost" >> /etc/hosts \
 echo "192.168.0.2 node0" >> /etc/hosts \
 echo "192.168.0.3 node1" >> /etc/hosts
 
+## Create a .rhosts file in the root home directory and write the hostnames of the hosts in order to access password-free
+The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed that you must add all simulated nodes (e.g. if you would like to simulate 3 nodes, node2 must be added). \
+
+echo "node0 root" >> /root/.rhosts \
+echo "node1 root" >> /root/.rhosts
+
 ## Create an mpi script file in Ubuntu 18.04 simulated image
 The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed that you must add all simulated nodes (e.g. if you would like to simulate 3 nodes, node2 must be added). \
 
