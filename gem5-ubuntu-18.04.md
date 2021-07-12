@@ -23,8 +23,15 @@ apt install xinetd \
 apt install vim \
 apt install iputils-ping
 
-## Install rsh under Ubuntu for passwordless access
+## Start rsh server in Ubuntu 18.04 simulated image
 Add the rsh file content in /etc/xinetd.d/rsh file
+
+## Create the hosts file in Ubuntu 18.04 simulated image
+The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed that you must add all simulated nodes (e.g. if you would like to simulate 3 nodes, node2 must be added in the last /etc/hosts line).
+
+echo "127.0.0.1 localhost" >> /etc/hosts
+echo "192.168.0.2 node0" >> /etc/hosts
+echo "192.168.0.3 node1" >> /etc/hosts
 
 ## Add the following line in gem5 script
 /etc/init.d/xinetd restart 
