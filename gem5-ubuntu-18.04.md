@@ -56,6 +56,18 @@ echo "m5 dumpstats" >> mpi_execution_script \
 echo "rsh 192.168.0.3 m5 exit &" >> mpi_execution_script \
 chmod +x mpi_execution_script
 
+## Add the following line in gem5 script
+/etc/init.d/xinetd start 
+
+
+## Umount the disk image
+exit \
+cd \
+sudo umount /mnt/proc \
+sudo umount /mnt/dev \
+sudo umount /mnt
+
+
 # VEF traces (optional)
 apt install cmake \
 Download and install VEF prospector from here: https://gitraap.i3a.info/fandujar/VEF-Prospector
@@ -72,14 +84,3 @@ echo "vmpirun --allow-run-as-root --prefix /opt/openmpi -np 2 --host node0,node1
 echo "m5 dumpstats" >> vef_mpi_execution_script \
 echo "rsh 192.168.0.3 m5 exit &" >> vef_mpi_execution_script \
 chmod +x vef_mpi_execution_script
-
-## Add the following line in gem5 script
-/etc/init.d/xinetd start 
-
-
-## Umount the disk image
-exit \
-cd \
-sudo umount /mnt/proc \
-sudo umount /mnt/dev \
-sudo umount /mnt
