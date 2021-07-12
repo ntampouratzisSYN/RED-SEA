@@ -45,7 +45,7 @@ echo "rsh 192.168.0.3 m5 exit &" >> execution_script \
 chmod +x execution_script
 
 ## Add the following line in gem5 script
-/etc/init.d/xinetd restart 
+/etc/init.d/xinetd start 
 
 
 ## Umount the disk image
