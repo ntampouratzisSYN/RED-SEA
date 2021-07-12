@@ -56,7 +56,7 @@ echo "m5 dumpstats" >> mpi_execution_script \
 echo "rsh 192.168.0.3 m5 exit &" >> mpi_execution_script \
 chmod +x mpi_execution_script
 
-## Create an VEF mpi script file in Ubuntu 18.04 simulated image (obtain traces)
+## Create a VEF mpi script file in Ubuntu 18.04 simulated image (obtain traces)
 The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed that you must add all simulated nodes (e.g. if you would like to simulate 3 nodes, node2 must be added). \
 
 echo "hostname node0" >> vef_mpi_execution_script \
