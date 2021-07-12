@@ -56,6 +56,10 @@ echo "m5 dumpstats" >> mpi_execution_script \
 echo "rsh 192.168.0.3 m5 exit &" >> mpi_execution_script \
 chmod +x mpi_execution_script
 
+# VEF traces
+apt install cmake
+Download and install VEF prospector from here: https://gitraap.i3a.info/fandujar/VEF-Prospector
+
 ## Create a VEF mpi script file in Ubuntu 18.04 simulated image (obtain traces)
 The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed that you must add all simulated nodes (e.g. if you would like to simulate 3 nodes, node2 must be added). \
 
