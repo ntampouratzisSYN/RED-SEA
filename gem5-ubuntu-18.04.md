@@ -24,7 +24,7 @@ apt install vim \
 apt install iputils-ping
 
 ## Start rsh server in Ubuntu 18.04 simulated image
-Add the rsh file content in /etc/xinetd.d/rsh file
+Add the [rsh](rsh) file content in /etc/xinetd.d/rsh file
 
 ## Create the hosts file in Ubuntu 18.04 simulated image
 The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed that you must add all simulated nodes (e.g. if you would like to simulate 3 nodes, node2 must be added in the last /etc/hosts line). \
