@@ -42,7 +42,7 @@ echo "m5 resetstats" >> execution_script \
 echo "mpirun --allow-run-as-root --prefix /opt/openmpi -np 2 --host node0,node1 ./mpi_hello_world" >> execution_script \
 echo "m5 dumpstats" >> execution_script \
 echo "rsh 192.168.0.3 m5 exit &" >> execution_script \
-chmod +x execution_script \
+chmod +x execution_script
 
 ## Add the following line in gem5 script
 /etc/init.d/xinetd restart 
