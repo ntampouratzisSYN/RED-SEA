@@ -31,7 +31,7 @@ The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed
 
 echo "127.0.0.1 localhost" >> /etc/hosts \
 echo "192.168.0.2 node0" >> /etc/hosts \
-echo "192.168.0.3 node1" >> /etc/hosts \
+echo "192.168.0.3 node1" >> /etc/hosts
 
 ## Add the following line in gem5 script
 /etc/init.d/xinetd restart 
