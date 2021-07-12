@@ -56,7 +56,7 @@ echo "m5 dumpstats" >> mpi_execution_script \
 echo "rsh 192.168.0.3 m5 exit &" >> mpi_execution_script \
 chmod +x mpi_execution_script
 
-# VEF traces
+# VEF traces (optional)
 apt install cmake \
 Download and install VEF prospector from here: https://gitraap.i3a.info/fandujar/VEF-Prospector
 
