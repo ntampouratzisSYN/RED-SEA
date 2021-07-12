@@ -33,6 +33,17 @@ echo "127.0.0.1 localhost" >> /etc/hosts \
 echo "192.168.0.2 node0" >> /etc/hosts \
 echo "192.168.0.3 node1" >> /etc/hosts
 
+## Create an mpi script file in Ubuntu 18.04 simulated image
+The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed that you must add all simulated nodes (e.g. if you would like to simulate 3 nodes, node2 must be added). \
+
+echo "hostname node0" >> execution_script \
+echo "rsh 192.168.0.3 hostname node1" >> execution_script \
+echo "m5 resetstats" >> execution_script \
+echo "mpirun --allow-run-as-root --prefix /opt/openmpi -np 2 --host node0,node1 ./mpi_hello_world" >> execution_script \
+echo "m5 dumpstats" >> execution_script \
+echo "rsh 192.168.0.3 m5 exit &" >> execution_script \
+chmod +x execution_script \
+
 ## Add the following line in gem5 script
 /etc/init.d/xinetd restart 
 
