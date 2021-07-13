@@ -27,14 +27,14 @@ apt install iputils-ping
 Add the [rsh](rsh) file content in /etc/xinetd.d/rsh file
 
 ## Create the hosts file in Ubuntu 18.04 simulated image
-The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed that you must add all simulated nodes (e.g. if you would like to simulate 3 nodes, node2 must be added in the last /etc/hosts line). \
+The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed that you must add all simulated nodes (e.g. if you would like to simulate 3 nodes, node2 must be added in the last /etc/hosts line).
 
 echo "127.0.0.1 localhost" >> /etc/hosts \
 echo "192.168.0.2 node0" >> /etc/hosts \
 echo "192.168.0.3 node1" >> /etc/hosts
 
 ## Create a .rhosts file in the root home directory and write the hostnames of the hosts in order to access password-free
-The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed that you must add all simulated nodes (e.g. if you would like to simulate 3 nodes, node2 must be added). \
+The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed that you must add all simulated nodes (e.g. if you would like to simulate 3 nodes, node2 must be added).
 
 echo "node0 root" >> /root/.rhosts \
 echo "node1 root" >> /root/.rhosts
@@ -47,7 +47,7 @@ https://www.open-mpi.org/software/ompi/v2.1/
 https://edu.itp.phys.ethz.ch/hs12/programming_techniques/openmpi.pdf 
 
 ## Create an mpi script file in Ubuntu 18.04 simulated image
-The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed that you must add all simulated nodes (e.g. if you would like to simulate 3 nodes, node2 must be added). \
+The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed that you must add all simulated nodes (e.g. if you would like to simulate 3 nodes, node2 must be added).
 
 echo "hostname node0" >> mpi_execution_script \
 echo "rsh 192.168.0.3 hostname node1" >> mpi_execution_script \
@@ -58,7 +58,7 @@ echo "rsh 192.168.0.3 m5 exit &" >> mpi_execution_script \
 chmod +x mpi_execution_script
 
 # MPICH Instalation
-apt install mpich \
+apt install mpich
 
 ## Create a host_file
 echo "node0:1" >> host_file \
