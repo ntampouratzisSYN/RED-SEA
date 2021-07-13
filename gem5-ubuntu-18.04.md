@@ -39,6 +39,7 @@ The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed
 echo "node0 root" >> /root/.rhosts \
 echo "node1 root" >> /root/.rhosts
 
+# OpenMPI Instalation
 ## Download the openmpi (v2.1.6)
 https://www.open-mpi.org/software/ompi/v2.1/ 
 
@@ -55,6 +56,15 @@ echo "mpirun --allow-run-as-root --prefix /opt/openmpi -np 2 --host node0,node1 
 echo "m5 dumpstats" >> mpi_execution_script \
 echo "rsh 192.168.0.3 m5 exit &" >> mpi_execution_script \
 chmod +x mpi_execution_script
+
+# MPICH Instalation
+apt install mpich \
+
+## Create a host_file
+echo "node0:1" >> host_file \
+echo "node1:1" >> host_file
+
+Use this command: mpirun -launcher rsh -n 2 -f host_file ./mpi_hello_world
 
 ## Add the following line in gem5 script
 /etc/init.d/xinetd start 
