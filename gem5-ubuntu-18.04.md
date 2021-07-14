@@ -95,7 +95,7 @@ echo "m5 dumpstats" >> vef_mpi_execution_script \
 echo "rsh 192.168.0.3 m5 exit &" >> vef_mpi_execution_script \
 chmod +x vef_mpi_execution_script
 
-#get the comm and veft files from other gem5 nodes
-rsh 192.168.0.3 cat 1.comm >> 1.comm
+# Get the comm and veft files from other gem5 nodes
+rsh 192.168.0.3 cat 1.comm >> 1.comm \
 rsh 192.168.0.3 cat 1.veft >> 1.veft
 
