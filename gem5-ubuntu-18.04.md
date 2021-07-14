@@ -90,7 +90,12 @@ echo "rsh 192.168.0.3 hostname node1" >> vef_mpi_execution_script \
 echo "export PATH=$PATH:/opt/vef_prospector/bin/" >> vef_mpi_execution_script \
 echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/vef_prospector/bin/" >> vef_mpi_execution_script \
 echo "m5 resetstats" >> vef_mpi_execution_script \
-echo "vmpirun --allow-run-as-root --prefix /opt/openmpi -np 2 --host node0,node1 ./mpi_hello_world" >> vef_mpi_execution_script \
+echo "vmpirun -launcher rsh -n 2 -f host_file ./mpi_hello_world" >> vef_mpi_execution_script \
 echo "m5 dumpstats" >> vef_mpi_execution_script \
 echo "rsh 192.168.0.3 m5 exit &" >> vef_mpi_execution_script \
 chmod +x vef_mpi_execution_script
+
+#get the comm and veft files from other gem5 nodes
+rsh 192.168.0.3 cat 1.comm >> 1.comm
+rsh 192.168.0.3 cat 1.veft >> 1.veft
+
