@@ -96,6 +96,6 @@ echo "rsh 192.168.0.3 m5 exit &" >> vef_mpi_execution_script \
 chmod +x vef_mpi_execution_script
 
 # Get the comm and veft files from other gem5 nodes
-rsh 192.168.0.3 cat /mpi_hello_world-*/1.comm >> /mpi_hello_world-*/1.comm \
-rsh 192.168.0.3 cat /mpi_hello_world-*/1.veft >> /mpi_hello_world-*/1.veft
+`rsh 192.168.0.3 cat /mpi_hello_world-*/1.comm >> /mpi_hello_world-*/1.comm \
+rsh 192.168.0.3 cat /mpi_hello_world-*/1.veft >> /mpi_hello_world-*/1.veft`
 
