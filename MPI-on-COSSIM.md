@@ -180,3 +180,10 @@ vi 3.finalization_script
 This is an example for 3 nodes: \
 rsh 192.168.0.3 m5 exit &       #terminate the gem5 node1 execution \
 rsh 192.168.0.4 m5 exit &       #terminate the gem5 node2 execution
+
+# Umount the disk image
+exit \
+cd \
+sudo umount /mnt/proc \
+sudo umount /mnt/dev \
+sudo umount /mnt
