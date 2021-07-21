@@ -88,6 +88,8 @@ simple Txc3 extends Txc0
 }
 ```
 
+To be noticed that the same number of gem5 and omnet++ nodes must be configured.
+
 ## 3. Mount the disk image
 sudo mount -o loop,offset=65536 $HOME/COSSIM/kernels/disks/ubuntu-18.04-arm64-docker.img /mnt \
 cd /mnt \
