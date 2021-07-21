@@ -1,6 +1,6 @@
 # How to execute MPI on COSSIM?
 
-## Declare how many gem5 nodes you want to simulate
+## 1. Declare how many gem5 nodes you want to simulate
 ```
 gedit /home/red-sea/COSSIM/cgem5/run.sh
 ```
@@ -12,30 +12,96 @@ $GEM5/build/ARM/gem5.opt --listener-mode=on -r -d $GEM5/node1 $GEM5/configs/exam
 $GEM5/build/ARM/gem5.opt --listener-mode=on -r -d $GEM5/node2 $GEM5/configs/example/arm/starter_fs.py --kernel=vmlinux.arm64 --num-cores=2 --disk-image=ubuntu-18.04-arm64-docker.img --SynchTime=100us --RxPacketTime=10us --TotalNodes=3 --nodeNum=2 --script=$GEM5/configs/boot/COSSIM/script2.rcS --etherdump=$GEM5/node2/ether_node2 --cossim &
 ```
 
-If you may need to add more nodes please the add the following line (where XXX the number of node - i.e. if you would like to add a 4th node, XXX=3 and XXX+1=4. To be notoced that you need to change the TotalNodes to TotalNodes=4 in all commands):
+If you may need to add more nodes please the add the following line (where XXX the number of node - i.e. if you would like to add a 4th node, XXX=3 and XXX+1=4. To be notoced that you need to change the TotalNodes to TotalNodes=4 in all of the above commands):
 ```
 $GEM5/build/ARM/gem5.opt --listener-mode=on -r -d $GEM5/nodeXXX $GEM5/configs/example/arm/starter_fs.py --kernel=vmlinux.arm64 --num-cores=2 --disk-image=ubuntu-18.04-arm64-docker.img --SynchTime=100us --RxPacketTime=10us --TotalNodes=XXX+1 --nodeNum=XXX --script=$GEM5/configs/boot/COSSIM/scriptXXX.rcS --etherdump=$GEM5/nodeXXX/ether_nodeXXX --cossim &
 ```
 
 
+## 2. Declare how many OMNET++ nodes you want to simulate
+
+Open OMNETPP
+
+```
+omnetpp
+```
+
+Go to HLANode --> src --> Txc.ned (in Project Explorer). 
+
+This is an example with 3 nodes:
+```
+package HLANode;
+
+simple Txc0
+{
+	parameters:
+		double RXPacketTime = default(0.00001);
+		int nodeNo = default(0);
+		bool sendInitialMessage = default(false);
+
+		@display("i=block/routing");
+	gates:
+		inout gate;
+}
+simple Txc1 extends Txc0
+{
+		parameters:
+		RXPacketTime = default(0.00001);
+		nodeNo = default(1);
+
+		sendInitialMessage = default(false);
+		@display("i=block/routing");
+}
+simple Txc2 extends Txc0
+{
+		parameters:
+		RXPacketTime = default(0.00001);
+		nodeNo = default(2);
+
+		sendInitialMessage = default(false);
+		@display("i=block/routing");
+}
+simple SyncNode
+{
+	parameters:
+		int NumberOfHLANodes = default(3);
+		double SynchTime = default(0.0001);
+
+		bool sendInitialMessage = default(false);
+		@display("i=block/routing");
+	gates:
+		input in;
+		output out;
+}
+```
+You can add OMNET++ node adding the below code (do not forget to change the NumberOfHLANodes to default(4)):
+
+simple Txc3 extends Txc0
+{
+		parameters:
+		RXPacketTime = default(0.00001);
+		nodeNo = default(3);
+
+		sendInitialMessage = default(false);
+		@display("i=block/routing");
+}
 
 
-
-## Mount the disk image
+## 3. Mount the disk image
 sudo mount -o loop,offset=65536 $HOME/COSSIM/kernels/disks/ubuntu-18.04-arm64-docker.img /mnt \
 cd /mnt \
 
-## Copy the MPI application to Ubuntu 18.04 simulated image
+## 4. Copy the MPI application to Ubuntu 18.04 simulated image
 cp /home/red-sea/Desktop/mpi_hello_world.c .
 
-# Emulate the image through QEMU
+# 5. Emulate the image through QEMU
 sudo mount --bind /proc /mnt/proc \
 sudo mount --bind /dev /mnt/dev \
 sudo chroot .
 
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 
-## Create the hosts file in Ubuntu 18.04 simulated image
+## 6. Create the hosts file in Ubuntu 18.04 simulated image
 You need to add the IP with the hostname for each gem5 node
 ```
 vi /etc/hosts
@@ -47,7 +113,7 @@ This is an example for 3 nodes: \
 192.168.0.3 node1 \
 192.168.0.4 node2
 
-## Create a .rhosts file in Ubuntu 18.04 simulated image
+## 7. Create a .rhosts file in Ubuntu 18.04 simulated image
 You need to create a .rhosts in the root home directory and write the hostnames of the hosts in order to access password-free
 ```
 vi /root/.rhosts
@@ -58,7 +124,7 @@ node0 root \
 node1 root \
 node2 root
 
-## Create a host_file in Ubuntu 18.04 simulated image
+## 8. Create a host_file in Ubuntu 18.04 simulated image
 You need to create a host_file in order to tell the MPI where the application must be executed
 
 ```
