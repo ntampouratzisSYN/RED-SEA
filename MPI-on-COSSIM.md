@@ -18,5 +18,5 @@ vi /etc/hosts
 ## Create a .rhosts file in Ubuntu 18.04 simulated image
 You need to create a .rhosts in the root home directory and write the hostnames of the hosts in order to access password-free \
 ```
-/root/.rhosts
+vi /root/.rhosts
 ```
