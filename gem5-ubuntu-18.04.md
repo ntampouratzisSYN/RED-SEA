@@ -88,7 +88,7 @@ The following configuration is for 2 nodes (i.e. node0 and node1). To be noticed
 echo "hostname node0" >> vef_mpi_execution_script \
 echo "rsh 192.168.0.3 hostname node1" >> vef_mpi_execution_script \
 echo "export PATH=$PATH:/opt/vef_prospector/bin/" >> vef_mpi_execution_script \
-echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/vef_prospector/bin/" >> vef_mpi_execution_script \
+echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/vef_prospector/lib/" >> vef_mpi_execution_script \
 echo "m5 resetstats" >> vef_mpi_execution_script \
 echo "vmpirun -launcher rsh -n 2 -f host_file ./mpi_hello_world" >> vef_mpi_execution_script \
 echo "m5 dumpstats" >> vef_mpi_execution_script \
