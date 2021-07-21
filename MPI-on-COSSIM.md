@@ -88,23 +88,27 @@ simple Txc3 extends Txc0
 }
 ```
 
-To be noticed that the same number of gem5 and omnet++ nodes must be configured (We may simplify the procedure of 1 and 2 steps through GUI).
+To be noticed that the same number of gem5 and omnet++ nodes must be configured (We will simplify the procedure of 1 and 2 steps through GUI).
 
-## 3. Mount the disk image
+## 3. Connect the OMNET++ nodes
+
+You need to connect the OMNET++ nodes through ARPTest.ned file (test --> simulations --> ARPTest.ned).
+
+## 4. Mount the disk image
 sudo mount -o loop,offset=65536 $HOME/COSSIM/kernels/disks/ubuntu-18.04-arm64-docker.img /mnt \
 cd /mnt \
 
-## 4. Copy the MPI application to Ubuntu 18.04 simulated image
+## 5. Copy the MPI application to Ubuntu 18.04 simulated image
 cp /home/red-sea/Desktop/mpi_hello_world.c .
 
-# 5. Emulate the image through QEMU
+# 6. Emulate the image through QEMU
 sudo mount --bind /proc /mnt/proc \
 sudo mount --bind /dev /mnt/dev \
 sudo chroot .
 
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 
-## 6. Create the hosts file in Ubuntu 18.04 simulated image
+## 7. Create the hosts file in Ubuntu 18.04 simulated image
 You need to add the IP with the hostname for each gem5 node
 ```
 vi /etc/hosts
@@ -116,7 +120,7 @@ This is an example for 3 nodes: \
 192.168.0.3 node1 \
 192.168.0.4 node2
 
-## 7. Create a .rhosts file in Ubuntu 18.04 simulated image
+## 8. Create a .rhosts file in Ubuntu 18.04 simulated image
 You need to create a .rhosts in the root home directory and write the hostnames of the hosts in order to access password-free
 ```
 vi /root/.rhosts
@@ -127,7 +131,7 @@ node0 root \
 node1 root \
 node2 root
 
-## 8. Create a host_file in Ubuntu 18.04 simulated image
+## 9. Create a host_file in Ubuntu 18.04 simulated image
 You need to create a host_file in order to tell the MPI where the application must be executed
 
 ```
