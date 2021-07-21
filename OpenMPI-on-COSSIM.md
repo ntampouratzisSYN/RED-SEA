@@ -170,8 +170,8 @@ rsh 192.168.0.4 hostname node2  #declare the hostname for node2
 vi 2.mpi_execution_script
 ```
 This is an example for 3 nodes: \
-export PATH=$PATH:/opt/openmpi/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/openmpi/lib
+export PATH=$PATH:/opt/openmpi/bin \
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/openmpi/lib \
 m5 resetstats                   #reset the gem5 statistics before mpi execution \
 mpirun --allow-run-as-root --prefix /opt/openmpi -np 3 --host node0,node1,node2 ./mpi_hello_world #execute the app \
 m5 dumpstats                    #dump the gem5 statistics
