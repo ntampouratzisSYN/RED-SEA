@@ -103,6 +103,8 @@ You need to connect the OMNET++ nodes through ARPTest.ned file (test --> simulat
 sudo mount -o loop,offset=65536 $HOME/COSSIM/kernels/disks/ubuntu-18.04-arm64-docker.img /mnt \
 cd /mnt \
 
+To be noticed that the sudo code is: redsea1234
+
 ## 2. Copy and compile the MPI application to Ubuntu 18.04 simulated image
 cp /home/red-sea/Desktop/mpi_hello_world.c .
 mpicc -o mpi_hello_world mpi_hello_world.c
