@@ -10,13 +10,13 @@ sudo chroot .
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 
 ## Create the hosts file in Ubuntu 18.04 simulated image
-You need to add the IP with the hostname for each gem5 node \
+You need to add the IP with the hostname for each gem5 node
 ```
 vi /etc/hosts
 ```
 
 ## Create a .rhosts file in Ubuntu 18.04 simulated image
-You need to create a .rhosts in the root home directory and write the hostnames of the hosts in order to access password-free \
+You need to create a .rhosts in the root home directory and write the hostnames of the hosts in order to access password-free
 ```
 vi /root/.rhosts
 ```
