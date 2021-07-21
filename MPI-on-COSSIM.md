@@ -12,7 +12,7 @@ $GEM5/build/ARM/gem5.opt --listener-mode=on -r -d $GEM5/node1 $GEM5/configs/exam
 $GEM5/build/ARM/gem5.opt --listener-mode=on -r -d $GEM5/node2 $GEM5/configs/example/arm/starter_fs.py --kernel=vmlinux.arm64 --num-cores=2 --disk-image=ubuntu-18.04-arm64-docker.img --SynchTime=100us --RxPacketTime=10us --TotalNodes=3 --nodeNum=2 --script=$GEM5/configs/boot/COSSIM/script2.rcS --etherdump=$GEM5/node2/ether_node2 --cossim &
 ```
 
-If you may need to add more nodes please the add the following line (where XXX the number of node - i.e. if you would like to add the 4th node, XXX=3 and XXX+1=4. To be notoced that you need to change the TotalNodes to TotalNodes=4 in all commands):
+If you may need to add more nodes please the add the following line (where XXX the number of node - i.e. if you would like to add a 4th node, XXX=3 and XXX+1=4. To be notoced that you need to change the TotalNodes to TotalNodes=4 in all commands):
 ```
 $GEM5/build/ARM/gem5.opt --listener-mode=on -r -d $GEM5/nodeXXX $GEM5/configs/example/arm/starter_fs.py --kernel=vmlinux.arm64 --num-cores=2 --disk-image=ubuntu-18.04-arm64-docker.img --SynchTime=100us --RxPacketTime=10us --TotalNodes=XXX+1 --nodeNum=XXX --script=$GEM5/configs/boot/COSSIM/scriptXXX.rcS --etherdump=$GEM5/nodeXXX/ether_nodeXXX --cossim &
 ```
