@@ -149,7 +149,7 @@ node0:1 \
 node1:1 \
 node2:1
 
-# We have create a number of scripts in order to execute the application
+# Execute the MPI application
 
 ## 1. Setup the correct hostname in all gem5 nodes (through node0)
 
