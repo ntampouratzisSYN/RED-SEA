@@ -76,6 +76,7 @@ simple SyncNode
 ```
 You can add OMNET++ node adding the below code (do not forget to change the NumberOfHLANodes to default(4)):
 
+```
 simple Txc3 extends Txc0
 {
 		parameters:
@@ -85,7 +86,7 @@ simple Txc3 extends Txc0
 		sendInitialMessage = default(false);
 		@display("i=block/routing");
 }
-
+```
 
 ## 3. Mount the disk image
 sudo mount -o loop,offset=65536 $HOME/COSSIM/kernels/disks/ubuntu-18.04-arm64-docker.img /mnt \
