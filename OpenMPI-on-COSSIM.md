@@ -1,4 +1,4 @@
-# How to execute MPI on COSSIM?
+# How to execute OpenMPI on COSSIM?
 
 # Setup the COSSIM environment
 
