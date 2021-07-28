@@ -119,8 +119,8 @@ You need to connect the OMNET++ nodes through ARPTest.ned file (test --> simulat
 
 ## 1. Mount the disk image
 ```
-sudo mount -o loop,offset=65536 $HOME/COSSIM/kernels/disks/ubuntu-18.04-arm64-docker.img /mnt \
-cd /mnt \
+sudo mount -o loop,offset=65536 $HOME/COSSIM/kernels/disks/ubuntu-18.04-arm64-docker.img /mnt
+cd /mnt
 ```
 <b> To be noticed that the sudo code is: redsea1234 </b>
 
@@ -131,8 +131,8 @@ cp /home/red-sea/Desktop/mpi_hello_world.c .
 
 # 3. Emulate the image through QEMU
 ```
-sudo mount --bind /proc /mnt/proc \
-sudo mount --bind /dev /mnt/dev \
+sudo mount --bind /proc /mnt/proc
+sudo mount --bind /dev /mnt/dev
 sudo chroot .
 
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
