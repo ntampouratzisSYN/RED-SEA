@@ -173,7 +173,7 @@ You need to create a host_file in order to tell the MPI where the application mu
 vi host_file
 ```
 
-This is an example for 3 nodes: \
+This is an example for 3 nodes (1 process/per node): \
 node0:1 \
 node1:1 \
 node2:1
