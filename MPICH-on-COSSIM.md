@@ -19,8 +19,20 @@ If you may need to add more nodes please the add the following line (where XXX t
 $GEM5/build/ARM/gem5.opt --listener-mode=on -r -d $GEM5/nodeXXX $GEM5/configs/example/arm/starter_fs.py --kernel=vmlinux.arm64 --num-cores=2 --disk-image=ubuntu-18.04-arm64-docker.img --SynchTime=100us --RxPacketTime=10us --TotalNodes=XXX+1 --nodeNum=XXX --script=$GEM5/configs/boot/COSSIM/scriptXXX.rcS --etherdump=$GEM5/nodeXXX/ether_nodeXXX --cossim &
 ```
 
+## 2. Declare the gem5 boot scripts 
+Create for each gem5 node a configuration script with the network parameters (lo, IP, netmask) as well as the command for rsh server start up. 
+```
+ifconfig eth0 hw ether 00:90:00:00:00:00
+ifconfig lo 127.0.0.1                             #Configure the localhost
+ifconfig eth0 192.168.0.2                         #Configure the Ethernet
+ifconfig eth0 netmask 255.255.255.0               #Configure the Netmask
+ulimit -c unlimited
 
-## 2. Declare how many OMNET++ nodes you want to simulate
+/etc/init.d/xinetd start #Start the rsh server
+
+exec /bin/bash
+```
+## 3. Declare how many OMNET++ nodes you want to simulate
 
 Open OMNETPP
 
@@ -92,7 +104,7 @@ simple Txc3 extends Txc0
 
 To be noticed that the same number of gem5 and omnet++ nodes must be configured (We will simplify the procedure of 1 and 2 steps through GUI).
 
-## 3. Connect the OMNET++ nodes
+## 4. Connect the OMNET++ nodes
 
 You need to connect the OMNET++ nodes through ARPTest.ned file (test --> simulations --> ARPTest.ned).
 
