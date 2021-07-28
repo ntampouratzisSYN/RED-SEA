@@ -126,7 +126,7 @@ cd /mnt
 
 ## 2. Copy the MPI application to Ubuntu 18.04 simulated image
 ```
-cp /home/red-sea/Desktop/mpi_hello_world.c .
+sudo cp /home/red-sea/Desktop/mpi_hello_world.c .
 ```
 
 # 3. Emulate the image through QEMU
