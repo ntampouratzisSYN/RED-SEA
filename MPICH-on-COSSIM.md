@@ -20,7 +20,9 @@ $GEM5/build/ARM/gem5.opt --listener-mode=on -r -d $GEM5/nodeXXX $GEM5/configs/ex
 ```
 
 ## 2. Declare the gem5 boot scripts 
-Create for each gem5 node a configuration script with the network parameters (lo, IP, netmask) as well as the command for rsh server start up. 
+Create for each gem5 node a configuration script with the network parameters (lo, IP, netmask) as well as the command for rsh server start up.
+This is an example for node0 (the same configuartions must be declared for the other nodes):
+
 ```
 ifconfig eth0 hw ether 00:90:00:00:00:00
 ifconfig lo 127.0.0.1                             #Configure the localhost
@@ -31,6 +33,10 @@ ulimit -c unlimited
 /etc/init.d/xinetd start #Start the rsh server
 
 exec /bin/bash
+```
+The path for the scripts is (as declared in run.sh):
+```
+$GEM5/configs/boot/COSSIM
 ```
 ## 3. Declare how many OMNET++ nodes you want to simulate
 
