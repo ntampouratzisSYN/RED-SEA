@@ -25,7 +25,7 @@ echo "nameserver 8.8.8.8" > /etc/resolv.conf
 ```
 mpicc -o mpi_hello_world mpi_hello_world.c
 ```
-## 5. Execute the MPI application (through node0)
+## 5. Execute the MPI application
 ```
 mpirun -n 8 ./mpi_hello_world #execute the app
 ```
