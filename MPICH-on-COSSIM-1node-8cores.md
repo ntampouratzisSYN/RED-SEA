@@ -35,13 +35,23 @@ sudo umount /mnt/proc \
 sudo umount /mnt/dev \
 sudo umount /mnt
 
-## 6. Execute the MPI application
+## 6. Start-up the GEM5 node
+The following command will start the gem5 execution (you can see the statistics in folder $GEM5/node0):
+```
+$GEM5/build/ARM/gem5.opt -d $GEM5/node0 $GEM5/configs/example/arm/starter_fs.py --kernel=vmlinux.arm64 --num-cores=8 --disk-image=ubuntu-18.04-arm64-docker.img
+```
+## 7. Open GEM5 terminal in order to interact with simulated OS
+```
+m5term 127.0.0.1 3456
+```
+
+## 7. Execute the MPI application from simulated environment
 If you would like to execute the application with VEF traces replace the ```mpirun``` with ```vmpirun```.
 ```
 mpirun -n 8 ./mpi_hello_world #execute the app
 ```
 
-## 7. Terminate the gem5
+## 8. Terminate the gem5
 ```
 m5 exit
 ```
