@@ -178,6 +178,13 @@ node0:1 \
 node1:1 \
 node2:1
 
+## 8. Umount the disk image
+exit \
+cd \
+sudo umount /mnt/proc \
+sudo umount /mnt/dev \
+sudo umount /mnt
+
 # Execute the MPI application
 
 ## 1. Setup the correct hostname in all gem5 nodes (through node0)
@@ -210,9 +217,4 @@ This is an example for 3 nodes: \
 rsh 192.168.0.3 m5 exit &       #terminate the gem5 node1 execution \
 rsh 192.168.0.4 m5 exit &       #terminate the gem5 node2 execution
 
-# Umount the disk image
-exit \
-cd \
-sudo umount /mnt/proc \
-sudo umount /mnt/dev \
-sudo umount /mnt
+
