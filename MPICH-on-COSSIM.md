@@ -129,7 +129,7 @@ cd /mnt
 sudo cp /home/red-sea/Desktop/mpi_hello_world.c .
 ```
 
-# 3. Emulate the image through QEMU
+## 3. Emulate the image through QEMU
 ```
 sudo mount --bind /proc /mnt/proc
 sudo mount --bind /dev /mnt/dev
