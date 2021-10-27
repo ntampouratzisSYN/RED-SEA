@@ -30,3 +30,8 @@ If you would like to execute the application with VEF traces replace the ```mpir
 ```
 mpirun -n 8 ./mpi_hello_world #execute the app
 ```
+
+## 6. Terminate the gem5
+```
+m5 exit
+```
