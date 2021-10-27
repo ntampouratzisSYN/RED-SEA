@@ -179,7 +179,7 @@ node1:1 \
 node2:1
 
 ## 8. Create Scripts in order to execute the MPI application
-
+The following 3 scripts are used in order to execute the MPI application without VEF traces (in case you would like to execute the application with VEF traces, please go to Step 9).
 ### 1. Setup the correct hostname in all gem5 nodes (through node0)
 
 ```
@@ -210,8 +210,11 @@ This is an example for 3 nodes: \
 rsh 192.168.0.3 m5 exit &       #terminate the gem5 node1 execution \
 rsh 192.168.0.4 m5 exit &       #terminate the gem5 node2 execution
 
+## 9. Create Scripts in order to execute the MPI application with VEF Traces
+The following 4 scripts are used in order to execute the MPI application with VEF traces (in case you would like to execute the application with VEF traces, please skip the step 8).
 
-## 9. Umount the disk image
+
+## 10. Umount the disk image
 exit \
 cd \
 sudo umount /mnt/proc \
