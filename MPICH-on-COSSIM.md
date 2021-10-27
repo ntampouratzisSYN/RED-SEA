@@ -229,7 +229,7 @@ rsh 192.168.0.4 hostname node2  #declare the hostname for node2
 ```
 vi 2b.vef_mpi_execution_script 
 ```
-This is an example for 3 nodes: \
+This is an example for 3 nodes:
 
 #declare the vef prospector path \
 export PATH=$PATH:/opt/vef_prospector/bin/ \
