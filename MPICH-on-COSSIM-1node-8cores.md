@@ -1,3 +1,5 @@
+# MPICH on COSSIM 1node 8cores
+
 # Mount the Ubuntu 18.04 simulated image and configure the MPI environment
 
 ## 1. Mount the disk image
