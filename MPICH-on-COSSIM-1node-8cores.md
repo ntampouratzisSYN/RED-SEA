@@ -25,13 +25,21 @@ echo "nameserver 8.8.8.8" > /etc/resolv.conf
 ```
 mpicc -o mpi_hello_world mpi_hello_world.c
 ```
-## 5. Execute the MPI application
+
+## 5. Umount the disk image
+exit \
+cd \
+sudo umount /mnt/proc \
+sudo umount /mnt/dev \
+sudo umount /mnt
+
+## 6. Execute the MPI application
 If you would like to execute the application with VEF traces replace the ```mpirun``` with ```vmpirun```.
 ```
 mpirun -n 8 ./mpi_hello_world #execute the app
 ```
 
-## 6. Terminate the gem5
+## 7. Terminate the gem5
 ```
 m5 exit
 ```
