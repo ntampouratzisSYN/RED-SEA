@@ -213,6 +213,36 @@ rsh 192.168.0.4 m5 exit &       #terminate the gem5 node2 execution
 ## 9. Create Scripts in order to execute the MPI application with VEF Traces
 The following 4 scripts are used in order to execute the MPI application with VEF traces (in case you would like to execute the application with VEF traces, please skip the step 8).
 
+### 1. Setup the correct hostname in all gem5 nodes (through node0)
+
+```
+vi 1.setup_script
+```
+
+This is an example for 3 nodes: \
+hostname node0                  #declare the hostname for node0 \
+rsh 192.168.0.3 hostname node1  #declare the hostname for node1 \
+rsh 192.168.0.4 hostname node2  #declare the hostname for node2
+
+
+### 2. Execute the MPI application with VEF support (through node0)
+```
+vi 2b.mpi_execution_script
+```
+This is an example for 3 nodes: \
+m5 resetstats                   #reset the gem5 statistics before mpi execution \
+mpirun -launcher rsh -n 3 -f host_file ./mpi_hello_world #execute the app \
+m5 dumpstats                    #dump the gem5 statistics
+
+### 3. Terminate the gem5s (through node0)
+```
+vi 3.finalization_script
+```
+
+This is an example for 3 nodes: \
+rsh 192.168.0.3 m5 exit &       #terminate the gem5 node1 execution \
+rsh 192.168.0.4 m5 exit &       #terminate the gem5 node2 execution
+
 
 ## 10. Umount the disk image
 exit \
