@@ -178,16 +178,9 @@ node0:1 \
 node1:1 \
 node2:1
 
-## 8. Umount the disk image
-exit \
-cd \
-sudo umount /mnt/proc \
-sudo umount /mnt/dev \
-sudo umount /mnt
+## 8. Create Scripts in order to execute the MPI application
 
-# Execute the MPI application
-
-## 1. Setup the correct hostname in all gem5 nodes (through node0)
+### 1. Setup the correct hostname in all gem5 nodes (through node0)
 
 ```
 vi 1.setup_script
@@ -199,7 +192,7 @@ rsh 192.168.0.3 hostname node1  #declare the hostname for node1 \
 rsh 192.168.0.4 hostname node2  #declare the hostname for node2
 
 
-## 2. Execute the MPI application (through node0)
+### 2. Execute the MPI application (through node0)
 ```
 vi 2.mpi_execution_script
 ```
@@ -208,7 +201,7 @@ m5 resetstats                   #reset the gem5 statistics before mpi execution 
 mpirun -launcher rsh -n 3 -f host_file ./mpi_hello_world #execute the app \
 m5 dumpstats                    #dump the gem5 statistics
 
-## 3. Terminate the gem5s (through node0)
+### 3. Terminate the gem5s (through node0)
 ```
 vi 3.finalization_script
 ```
@@ -218,3 +211,9 @@ rsh 192.168.0.3 m5 exit &       #terminate the gem5 node1 execution \
 rsh 192.168.0.4 m5 exit &       #terminate the gem5 node2 execution
 
 
+## 9. Umount the disk image
+exit \
+cd \
+sudo umount /mnt/proc \
+sudo umount /mnt/dev \
+sudo umount /mnt
