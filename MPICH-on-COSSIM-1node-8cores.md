@@ -26,6 +26,7 @@ echo "nameserver 8.8.8.8" > /etc/resolv.conf
 mpicc -o mpi_hello_world mpi_hello_world.c
 ```
 ## 5. Execute the MPI application
+If you would like to execute the application with VEF traces replace the ```mpirun``` with ```vmpirun```.
 ```
 mpirun -n 8 ./mpi_hello_world #execute the app
 ```
