@@ -241,6 +241,7 @@ m5 dumpstats                    #dump the gem5 statistics
 
 
 ### 3. Gather the VEF traces from other nodes to node0
+This is a script in order to gather the VEF traces from node1 and node2 to node0. It was necessary in order to be created the final trace file (.vef) through VEF mixer.
 ```
 vi 2c.get_vef_traces
 ```
