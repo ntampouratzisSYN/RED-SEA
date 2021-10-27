@@ -178,7 +178,7 @@ node0:1 \
 node1:1 \
 node2:1
 
-## 8. Create Scripts in order to execute the MPI application
+## 8. Create Scripts in order to execute the MPI application <b>without VEF traces</b>
 The following 3 scripts are used in order to execute the MPI application <b>without VEF traces</b> (in case you would like to execute the application with VEF traces, please go to Step 9).
 ### 1. Setup the correct hostname in all gem5 nodes (through node0)
 
