@@ -227,12 +227,17 @@ rsh 192.168.0.4 hostname node2  #declare the hostname for node2
 
 ### 2. Execute the MPI application with VEF support (through node0)
 ```
-vi 2b.mpi_execution_script
+vi 2b.vef_mpi_execution_script 
 ```
 This is an example for 3 nodes: \
+
+#declare the vef prospector path \
+export PATH=$PATH:/opt/vef_prospector/bin/ \
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/vef_prospector/lib/ \
+
 m5 resetstats                   #reset the gem5 statistics before mpi execution \
-mpirun -launcher rsh -n 3 -f host_file ./mpi_hello_world #execute the app \
-m5 dumpstats                    #dump the gem5 statistics
+vmpirun -launcher rsh -n 3 -f host_file ./mpi_hello_world #execute the app \
+m5 dumpstats                    #dump the gem5 statistics 
 
 ### 3. Terminate the gem5s (through node0)
 ```
