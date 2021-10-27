@@ -233,7 +233,7 @@ This is an example for 3 nodes:
 
 #declare the vef prospector path \
 export PATH=$PATH:/opt/vef_prospector/bin/ \
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/vef_prospector/lib/ \
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/vef_prospector/lib/
 
 m5 resetstats                   #reset the gem5 statistics before mpi execution \
 vmpirun -launcher rsh -n 3 -f host_file ./mpi_hello_world #execute the app \
