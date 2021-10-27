@@ -239,7 +239,35 @@ m5 resetstats                   #reset the gem5 statistics before mpi execution 
 vmpirun -launcher rsh -n 3 -f host_file ./mpi_hello_world #execute the app \
 m5 dumpstats                    #dump the gem5 statistics 
 
-### 3. Terminate the gem5s (through node0)
+
+### 3. Gather the VEF traces from other nodes to node0
+```
+vi 2c.get_vef_traces
+```
+This is an example for 3 nodes:
+
+#declare the vef prospector path \
+export PATH=$PATH:/opt/vef_prospector/bin/ \
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/vef_prospector/lib/
+
+#go to traces directory \
+cd /mpi_hello_world-*
+
+#get traces from node1 \
+rsh 192.168.0.3 cat /mpi_hello_world-*/1.comm >> 1.comm \
+rsh 192.168.0.3 cat /mpi_hello_world-*/1.veft >> 1.veft
+
+#get traces from node2 \
+rsh 192.168.0.4 cat /mpi_hello_world-*/2.comm >> 2.comm \
+rsh 192.168.0.4 cat /mpi_hello_world-*/2.veft >> 2.veft
+
+#Execute vef_mixer \
+vef_mixer -i VEFT.main -o output_trace.vef
+
+#read the traces \
+cat output_trace.vef  
+
+### 4. Terminate the gem5s (through node0)
 ```
 vi 3.finalization_script
 ```
