@@ -65,7 +65,7 @@ vef_mixer -i VEFT.main -o output_trace.vef
 cat output_trace.vef
 ```
 
-## 10. Terminate the gem5
+## 11. Terminate the gem5
 ```
 m5 exit
 ```
