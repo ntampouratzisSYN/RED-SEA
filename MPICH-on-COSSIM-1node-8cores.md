@@ -45,13 +45,18 @@ $GEM5/build/ARM/gem5.opt -d $GEM5/node0 $GEM5/configs/example/arm/starter_fs.py 
 m5term 127.0.0.1 3456
 ```
 
-## 8. Execute the MPI application from simulated environment
+## 8. Set the hostname
+```
+hostname node0
+```
+
+## 9. Execute the MPI application from simulated environment
 If you would like to execute the application with VEF traces replace the ```mpirun``` with ```vmpirun```.
 ```
 mpirun -n 8 ./mpi_hello_world #execute the app
 ```
 
-## 9. Terminate the gem5
+## 10. Terminate the gem5
 ```
 m5 exit
 ```
