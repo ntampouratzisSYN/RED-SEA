@@ -45,15 +45,24 @@ $GEM5/build/ARM/gem5.opt -d $GEM5/node0 $GEM5/configs/example/arm/starter_fs.py 
 m5term 127.0.0.1 3456
 ```
 
-## 8. Set the hostname
+## 8. Set the hostname and VEF environment
 ```
 hostname node0
+export PATH=$PATH:/opt/vef_prospector/bin/
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/vef_prospector/lib/
 ```
 
 ## 9. Execute the MPI application from simulated environment
 If you would like to execute the application with VEF traces replace the ```mpirun``` with ```vmpirun```.
 ```
 mpirun -n 8 ./mpi_hello_world #execute the app
+```
+
+## 10. Execute vef_mixer and read traces (it should be used only after ```vmpirun```)
+```
+cd /mpi_hello_world-* #go to traces directory
+vef_mixer -i VEFT.main -o output_trace.vef
+cat output_trace.vef
 ```
 
 ## 10. Terminate the gem5
