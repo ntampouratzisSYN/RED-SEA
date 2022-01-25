@@ -1,4 +1,4 @@
-# MPICH on COSSIM 1node up to 8cores
+# MPICH on COSSIM 1node up to 64cores
 
 # Mount the Ubuntu 18.04 simulated image and configure the MPI environment
 
@@ -36,7 +36,7 @@ sudo umount /mnt/dev \
 sudo umount /mnt
 
 ## 6. Start-up the GEM5 node
-The following command will start the gem5 execution (you can see the statistics in folder $GEM5/node0):
+The following command will start the gem5 execution (you can see the statistics in folder $GEM5/node0). You may change the --num-cores from 1-64 (the following command is for 8):
 ```
 $GEM5/build/ARM/gem5.opt -d $GEM5/node0 $GEM5/configs/example/arm/starter_fs.py --kernel=vmlinux.arm64 --num-cores=8 --disk-image=ubuntu-18.04-arm64-docker.img --script=/home/red-sea/COSSIM/cgem5/configs/boot/standAloneScript0.rcS
 ```
